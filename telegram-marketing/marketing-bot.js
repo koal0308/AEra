@@ -414,38 +414,38 @@ bot.onText(/\/start(@AEra_Official_Bot)?/, (msg) => {
     
     const welcomeMessage = `🎉 *Welcome to AERA Token, ${firstName}!* 🎉
 
-✅ **🎊 ETHERSCAN VERIFICATION COMPLETE! 🎊**
+✅ *🎊 ETHERSCAN VERIFICATION COMPLETE! 🎊*
 Your AERA Token is now officially verified and listed on Etherscan Sepolia!
-� View the verified contract: https://sepolia.etherscan.io/address/${AERA_TOKEN_ADDRESS}#code
+🔍 View the verified contract: https://sepolia.etherscan.io/address/${AERA_TOKEN_ADDRESS}#code
 
-�🚀 **What is AERA?**
+🚀 *What is AERA?*
 A revolutionary ERC-20 token with advanced features for the DeFi future.
 
-✨ **Recent Achievements:**
+✨ *Recent Achievements:*
 ✅ Contract deployed to Sepolia Testnet
 ✅ Smart contract verified on Etherscan
 ✅ Source code publicly visible
 ✅ Full ABI available for integrations
 ✅ Ready for community launch
 
-🎁 **FREE AERA TOKENS:**
+🎁 *FREE AERA TOKENS:*
 /claim - ${AIRDROP_CONFIG.welcomeBonus} AERA welcome bonus
 /balance - Your AERA wallet  
 /refer - ${AIRDROP_CONFIG.referralBonus} AERA per friend
 /airdrop - Complete program
 
-📊 **Available Commands:**
+📊 *Available Commands:*
 /help - All commands
 /roadmap - Development roadmap  
 /info - Contract information & verification status
 /community - Community links
 
-🚀 **Next Stop:** Mainnet Q4 2026
+🚀 *Next Stop:* Mainnet Q4 2026
 
 *📊 Network:* Sepolia Testnet (ChainID: 11155111)
 *🔐 Security:* ERC-20 Standard + Burnable + Pausable + Permit
 *📋 License:* MIT Open Source
-*💾 Contract:* ${AERA_TOKEN_ADDRESS}*`;
+*💾 Contract:* ${AERA_TOKEN_ADDRESS}`;
 
     bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'Markdown' });
 });
