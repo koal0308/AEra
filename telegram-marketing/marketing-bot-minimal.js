@@ -511,6 +511,85 @@ bot.on('callback_query', (query) => {
     }
 });
 
+// /docs Command - ALL DOCUMENTATION LINKS
+bot.onText(/\/docs(@AEra_Official_Bot)?/, (msg) => {
+    const chatId = msg.chat.id;
+    botStats.botCommands++;
+    
+    console.log('📚 /docs requested');
+    
+    const docsMessage = `📚 *AEra Complete Documentation*
+
+*🔗 Central Hub:*
+https://github.com/koal0308/AEra/blob/master/DOCUMENTATION-INDEX.md
+
+*📄 Main Documents:*
+• White Paper: https://github.com/koal0308/AEra/blob/master/WHITEPAPER.md
+• Security Guarantee: https://github.com/koal0308/AEra/blob/master/SECURITY-GUARANTEE.md
+• Transparency Log: https://github.com/koal0308/AEra/blob/master/TRANSPARENCY-LOG.md
+• Deployment Checklist: https://github.com/koal0308/AEra/blob/master/DEPLOYMENT-CHECKLIST.md
+
+*🏗️ Architecture (Airdrop):*
+• Architecture Design: https://github.com/koal0308/AEra/blob/master/docs/AIRDROP-ARCHITECTURE.md
+• Roadmap (6 phases): https://github.com/koal0308/AEra/blob/master/docs/AIRDROP-ROADMAP.md
+• Quick Reference: https://github.com/koal0308/AEra/blob/master/docs/AIRDROP-QUICK-REFERENCE.md
+
+*🤖 Bot Documentation:*
+• Minimal Bot Setup: https://github.com/koal0308/AEra/blob/master/BOT-MINIMAL-SETUP.md
+• Bot Compliance: https://github.com/koal0308/AEra/blob/master/BOT-COMPLIANCE-GUIDE.md
+• Bot Principles: https://github.com/koal0308/AEra/blob/master/BOT-PRINCIPLES.md
+
+*🌐 GitHub Repository:*
+https://github.com/koal0308/AEra
+
+*📊 Statistics:*
+• 15+ Documentation Files
+• 4000+ Lines of Documentation
+• 2000+ Lines of Bot Code
+• 500+ Lines of Smart Contract
+• All Publicly Available`;
+
+    bot.sendMessage(chatId, docsMessage, { parse_mode: 'Markdown', disable_web_page_preview: true });
+});
+
+// /verify Command - VERIFICATION LINKS
+bot.onText(/\/verify(@AEra_Official_Bot)?/, (msg) => {
+    const chatId = msg.chat.id;
+    botStats.botCommands++;
+    
+    console.log('✅ /verify requested');
+    
+    const verifyMessage = `✅ *Verification & On-Chain Links*
+
+*🔍 Smart Contract (Etherscan):*
+https://sepolia.etherscan.io/address/${AERA_TOKEN_ADDRESS}
+
+*📋 Smart Contract Code:*
+https://sepolia.etherscan.io/address/${AERA_TOKEN_ADDRESS}#code
+
+*👑 Ownership Transfer Transaction:*
+TX Hash: 0xa0a1a525bc96a3b4c813fa363f7b7d20694ef6e28a1958e1d1c0264cf59c6c30
+Block: 9545535
+Link: https://sepolia.etherscan.io/tx/0xa0a1a525bc96a3b4c813fa363f7b7d20694ef6e28a1958e1d1c0264cf59c6c30
+
+*🏛️ Multi-Sig Safe (2-of-3 Governance):*
+Address: 0xC8B1bEb43361bb78400071129139A37Eb5c5Dd93
+Link: https://app.safe.global/home?safe=sep:0xC8B1bEb43361bb78400071129139A37Eb5c5Dd93
+
+*✅ Sourcify Verification (Exact Match):*
+Match ID: 9753387
+Status: ✅ VERIFIED
+Link: https://sourcify.dev/#/verify/${AERA_TOKEN_ADDRESS}?network=11155111
+
+*📊 Complete Verification Log:*
+https://github.com/koal0308/AEra/blob/master/TRANSPARENCY-LOG.md
+
+*🎯 Deployment Checklist (All 18 Tasks ✅):*
+https://github.com/koal0308/AEra/blob/master/DEPLOYMENT-CHECKLIST.md`;
+
+    bot.sendMessage(chatId, verifyMessage, { parse_mode: 'Markdown', disable_web_page_preview: true });
+});
+
 // /whitepaper Command
 bot.onText(/\/whitepaper(@AEra_Official_Bot)?/, (msg) => {
     const chatId = msg.chat.id;
@@ -588,10 +667,17 @@ bot.onText(/\/help(@AEra_Official_Bot)?/, (msg) => {
 ⚖️ *Legal & Compliance:*
 /disclaimer - Legal notice
 /consent - Confirm understanding
+
+📚 *Full Documentation:*
+/docs - All documentation links
+
+🔐 *Verify Everything:*
+/verify - Verification links
+
 /help - This message
 
-*Questions?*
-Visit our GitHub: https://github.com/koal0308/AEra`;
+*GitHub Repository:*
+https://github.com/koal0308/AEra`;
 
     bot.sendMessage(chatId, helpMessage, { parse_mode: 'Markdown', disable_web_page_preview: true });
 });
@@ -605,7 +691,7 @@ bot.getMe().then(me => {
 });
 
 console.log('🚀 AERA Token Bot - MINIMAL VERSION - READY!');
-console.log('Commands: /start, /status, /info, /supply, /contract, /verification, /roadmap, /community, /marketing, /disclaimer, /consent, /whitepaper, /help\n');
+console.log('Commands: /start, /status, /info, /supply, /contract, /verification, /roadmap, /community, /marketing, /disclaimer, /consent, /whitepaper, /docs, /verify, /help\n');
 
 // Error Handling
 bot.on('polling_error', (error) => {
