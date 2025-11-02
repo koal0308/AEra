@@ -98,6 +98,64 @@ const AIRDROP_CONFIG = {
     cooldownHours: 24
 };
 
+// ===================================
+// LEGAL NOTICE & COMPLIANCE
+// ===================================
+
+const LEGAL_DISCLAIMER = `⚖️ DISCLAIMER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧪 TESTNET ONLY: Sepolia Testnet, NO real value
+❌ NOT AN INVESTMENT: This is a test token
+⚠️  NO GUARANTEE: Use at own risk
+📜 MIT License: https://github.com/koal0308/AEra
+
+Type /disclaimer for full details.`;
+
+const FULL_DISCLAIMER = `⚖️ FULL LEGAL DISCLAIMER
+
+1. TESTNET ONLY
+   This is AEra Testtoken on Sepolia Testnet.
+   No real monetary value. For testing only.
+
+2. NOT AN INVESTMENT
+   AEra is NOT a security, investment product,
+   or financial instrument. No guarantees.
+
+3. USER RESPONSIBILITY
+   Each user acts on own responsibility.
+   You must comply with local laws.
+
+4. NO LIABILITY
+   The developer/operator is NOT liable for
+   any damages, losses or issues.
+
+5. TECHNICAL DISCLAIMER
+   Sepolia can be unstable. No SLA offered.
+
+6. OPEN SOURCE
+   Code available at: https://github.com/koal0308/AEra
+   (MIT License - Use at your own risk)
+
+7. TESTNET WARNING
+   ⚠️  NEVER enter real private keys!
+   ⚠️  NEVER send real funds!
+
+Full terms: https://github.com/koal0308/AEra/blob/master/BOT-PRINCIPLES.md`;
+
+const CONSENT_MESSAGE = `🔐 BEFORE YOU CONTINUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AEra is a TESTTOKEN on Sepolia Testnet.
+This is NOT an investment or money-making scheme.
+
+By claiming, you confirm:
+✅ You understand this is a test token
+✅ You accept NO responsibility  
+✅ You comply with local laws
+✅ You will NOT send real money
+
+${"═".repeat(32)}`;
+
 // Airdrop System
 const airdropSystem = {
     activeAirdrops: new Map(),
@@ -164,6 +222,53 @@ function loadUserDataFile() {
         console.log(`✅ User data loaded: ${airdropSystem.totalParticipants} users restored`);
     } catch (error) {
         console.log(`❌ Error loading user data: ${error.message}`);
+    }
+}
+
+// ===================================
+// AIRDROP LOGGING & AUDIT TRAIL
+// ===================================
+
+function logAirdropTransaction(airdropData) {
+    try {
+        const logEntry = {
+            airdrop_id: `${new Date().toISOString().split('T')[0]}-${Math.random().toString(36).substr(2, 9)}`,
+            timestamp: new Date().toISOString(),
+            user_id: airdropData.userId,
+            username: airdropData.username,
+            wallet: airdropData.wallet || 'pending',
+            amount: airdropData.amount,
+            network: 'sepolia',
+            tx_hash: airdropData.txHash || 'pending',
+            block: airdropData.block || null,
+            status: airdropData.status || 'pending', // pending, confirmed, failed
+            type: airdropData.type, // welcome, claim, referral, contest
+            consent: {
+                agreed: true,
+                timestamp: new Date(airdropData.consentTime || new Date()).toISOString()
+            },
+            limits_check: {
+                daily_used: airdropData.dailyUsed || 0,
+                daily_limit: AIRDROP_CONFIG.maxDailyClaims,
+                wallet_claims: airdropData.walletClaims || 0,
+                passed: true
+            }
+        };
+        
+        // Append to log file
+        let logs = [];
+        if (fs.existsSync('./airdrop-log.json')) {
+            const data = fs.readFileSync('./airdrop-log.json', 'utf8');
+            logs = JSON.parse(data);
+        }
+        logs.push(logEntry);
+        fs.writeFileSync('./airdrop-log.json', JSON.stringify(logs, null, 2));
+        
+        console.log(`📝 Airdrop logged: ${airdropData.amount} AERA to ${airdropData.username}`);
+        return logEntry.airdrop_id;
+    } catch (error) {
+        console.log(`❌ Error logging airdrop: ${error.message}`);
+        return null;
     }
 }
 
@@ -374,6 +479,10 @@ bot.onText(/\/help(@AEra_Official_Bot)?/, (msg) => {
 /claim - Daily reward
 /balance - AERA wallet status
 /refer - Invite friends
+
+**⚖️ Legal & Compliance:**
+/disclaimer - Full legal notice & disclaimer
+/consent - Confirm you understand test token
 
 **🔧 Utility:**
 /help - This help`;
@@ -726,7 +835,10 @@ bot.onText(/\/airdrop(@AEra_Official_Bot)?/, (msg) => {
 /balance - Check your balance
 /refer - Invite friends
 
-⚠️ **Note:** Testnet Phase - Real tokens after Mainnet Q4 2026
+⚠️ **Before You Start:**
+/consent - Confirm you understand this is a test token
+
+${LEGAL_DISCLAIMER}
 
 #Airdrop #FreeTokens #Community`;
 
@@ -741,10 +853,21 @@ bot.onText(/\/claim(@AEra_Official_Bot)?/, (msg) => {
     
     const claimResult = processClaim(userId, username);
     
-    bot.sendMessage(chatId, claimResult.message, { parse_mode: 'Markdown' });
+    // Add disclaimer footer to message
+    const disclaimerFooter = `\n\n${LEGAL_DISCLAIMER}`;
+    
+    bot.sendMessage(chatId, claimResult.message + disclaimerFooter, { parse_mode: 'Markdown' });
     
     if (claimResult.success) {
         airdropSystem.totalDistributed += claimResult.amount;
+        logAirdropTransaction({
+            userId: userId,
+            username: username,
+            amount: claimResult.amount,
+            type: claimResult.type,
+            status: 'confirmed',
+            consentTime: new Date()
+        });
         if (claimResult.amount >= AIRDROP_CONFIG.contestReward) {
             sendAirdropNotification(username, claimResult.amount, claimResult.type);
         }
@@ -1375,6 +1498,121 @@ function resetDailyStats() {
     marketingStats.dailyActive.clear();
     marketingStats.botCommands = 0;
 }
+
+// ===================================
+// DISCLAIMER & CONSENT COMMANDS
+// ===================================
+
+// /disclaimer Command - Full legal notice
+bot.onText(/\/disclaimer(@AEra_Official_Bot)?/, (msg) => {
+    const chatId = msg.chat.id;
+    marketingStats.botCommands++;
+    
+    bot.sendMessage(chatId, FULL_DISCLAIMER, { 
+        parse_mode: 'Markdown',
+        disable_web_page_preview: true
+    });
+});
+
+// /consent Command - Get consent checkbox before claiming
+bot.onText(/\/consent(@AEra_Official_Bot)?/, (msg) => {
+    const chatId = msg.chat.id;
+    const userId = msg.from.id;
+    marketingStats.botCommands++;
+    
+    bot.sendMessage(chatId, CONSENT_MESSAGE, {
+        parse_mode: 'Markdown',
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: '✅ I Understand & Accept', callback_data: `consent_agree_${userId}` },
+                    { text: '❌ Decline', callback_data: 'consent_decline' }
+                ]
+            ]
+        }
+    });
+});
+
+// Callback handler for consent buttons
+bot.on('callback_query', async (query) => {
+    const chatId = query.message.chat.id;
+    const userId = query.from.id;
+    const username = query.from.username || query.from.first_name;
+    
+    try {
+        if (query.data === 'consent_decline') {
+            await bot.answerCallbackQuery(query.id, '❌ You declined', false);
+            return;
+        }
+        
+        if (query.data.startsWith('consent_agree_')) {
+            const consentUserId = query.data.split('_')[2];
+            
+            if (userId != consentUserId) {
+                await bot.answerCallbackQuery(query.id, '⚠️ Wrong user!', true);
+                return;
+            }
+            
+            // Mark user as consented
+            if (!airdropSystem.participants.has(userId)) {
+                airdropSystem.participants.set(userId, {
+                    username: username,
+                    balance: 0,
+                    welcomeClaimed: false,
+                    dailyClaims: 0,
+                    lastClaimTime: null,
+                    referrals: [],
+                    referredBy: null,
+                    contestWins: 0,
+                    joinDate: new Date(),
+                    totalEarned: 0,
+                    consentAgreed: true,
+                    consentTime: new Date()
+                });
+            } else {
+                const user = airdropSystem.participants.get(userId);
+                user.consentAgreed = true;
+                user.consentTime = new Date();
+            }
+            
+            saveUserDataFile();
+            logAirdropTransaction({
+                userId: userId,
+                username: username,
+                amount: 0,
+                type: 'consent',
+                consentTime: new Date(),
+                status: 'confirmed'
+            });
+            
+            await bot.answerCallbackQuery(query.id, '✅ Consent recorded!', false);
+            
+            const confirmMessage = `✅ *Consent Recorded*
+
+You have agreed to the terms:
+• AEra is a TESTTOKEN (Sepolia)
+• NOT an investment
+• NO guarantees
+• You act at own risk
+
+📋 Full disclaimer: /disclaimer
+
+🎁 You can now claim tokens!
+/claim - Claim daily reward
+/airdrop - View airdrop info
+
+${"═".repeat(40)}`;
+            
+            await bot.sendMessage(chatId, confirmMessage, { parse_mode: 'Markdown' });
+            
+            return;
+        }
+        
+    } catch (error) {
+        console.log('❌ Callback error:', error.message);
+        await bot.answerCallbackQuery(query.id, '❌ Error processing request', true);
+    }
+});
 
 // ===================================
 // BOT STARTUP
