@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-11-03T18:00:24.934Z",
+  "network": "Sepolia Testnet",
+  "contract": "0x5032206396A6001eEaD2e0178C763350C794F69e",
+  "maxSupply": "1000000000.0",
+  "totalSupply": "100000000.0",
+  "owner": "0xC8B1bEb43361bb78400071129139A37Eb5c5Dd93",
+  "status": "✅ SECURE",
+  "features": [
+    "ERC20",
+    "Burnable",
+    "Pausable",
+    "Permit (EIP-2612)",
+    "Ownable (Multi-Sig)",
+    "Verified on Etherscan",
+    "Verified on Sourcify"
+  ],
+  "checks": {
+    "owner_is_safe": true,
+    "has_max_supply": true,
+    "has_pausable": true,
+    "has_burnable": true,
+    "verified_onchain": true
+  }
+}
