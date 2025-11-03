@@ -327,7 +327,7 @@ bot.onText(/\/roadmap(@AEra_Official_Bot)?/, (msg) => {
 🔲 Liquidity framework
 🔲 Final audits & testing
 
-*Phase 4 (2026 Q4 - Earliest):* 🚀
+*Phase 4 (2026 Q4 - Earliest):*  
 🔲 **Mainnet Deployment**
 🔲 Liquidity lock (community vote)
 🔲 Public availability
@@ -590,7 +590,10 @@ Link: https://sourcify.dev/#/verify/${AERA_TOKEN_ADDRESS}?network=11155111
 https://github.com/koal0308/AEra/blob/master/TRANSPARENCY-LOG.md
 
 *🎯 Deployment Checklist (All 18 Tasks ✅):*
-https://github.com/koal0308/AEra/blob/master/DEPLOYMENT-CHECKLIST.md`;
+https://github.com/koal0308/AEra/blob/master/DEPLOYMENT-CHECKLIST.md
+
+*🔍 Slither Security Analysis (25 contracts, 0 critical issues):*
+https://github.com/koal0308/AEra/blob/master/SLITHER-REPORT.md`;
 
     bot.sendMessage(chatId, verifyMessage, { parse_mode: 'Markdown', disable_web_page_preview: true });
 });
