@@ -90,7 +90,41 @@ bot.onText(/\/start(@AEra_Official_Bot)?/, (msg) => {
     
     console.log(`🚀 /start from ${firstName}`);
     
-    const welcomeMessage = `🎉 *Welcome to AEra Token, ${firstName}!* 🎉
+    // Send AEra Logo Image
+    const logoUrl = 'https://raw.githubusercontent.com/koal0308/AEra/master/assets/aera-logo.png';
+    
+    bot.sendPhoto(chatId, logoUrl, {
+        caption: `🎉 *Welcome to AEra Token, ${firstName}!* 🎉
+
+*"The Resonant Standard"*
+
+✅ *Contract Verified & Live on Sepolia Testnet*
+🔍 View: https://sepolia.etherscan.io/address/${AERA_TOKEN_ADDRESS}#code
+
+🎯 *Mission:*
+AEra is a decentralized experiment in *resonance* – alignment between human intent and transparent digital systems.
+
+✨ *Core Principles:*
+• *Transparency* – Code first, all verifiable
+• *Resonance* – Value from clarity, not hype
+• *Accountability* – Every function auditable
+• *Autonomy* – No backdoors, fully open
+• *Community Safety* – Multi-sig ownership
+
+📊 *Learn More:*
+/info - Technical overview
+/whitepaper - Full White Paper
+/roadmap - Development phases
+/help - All commands
+
+*Network:* Sepolia Testnet
+*Symbol:* AERA
+*License:* MIT Open Source`,
+        parse_mode: 'Markdown'
+    }).catch((error) => {
+        console.log('⚠️ Could not load logo image, sending text instead');
+        
+        const welcomeMessage = `🎉 *Welcome to AEra Token, ${firstName}!* 🎉
 
 *"The Resonant Standard"*
 
@@ -117,7 +151,8 @@ AEra is a decentralized experiment in *resonance* – alignment between human in
 *Symbol:* AERA
 *License:* MIT Open Source`;
 
-    bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'Markdown' });
+        bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'Markdown' });
+    });
 });
 
 // /status Command
