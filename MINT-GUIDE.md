@@ -527,3 +527,19 @@ A: ✅ Ja! Alles auf dem Sepolia Testnet:
 **Status:** ✅ Ready to Mint!
 
 🪙 **Viel Spaß beim Minten deiner AERA Tokens!** 🚀
+
+---
+
+# === RPC URLS (PUBLIC - sicher) ===
+SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/f59yspJ3NKU1X0rQJduwR
+MAINNET_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/f59yspJ3NKU1X0rQJduwR
+
+# === API KEYS (PUBLIC - sicher) ===
+ETHERSCAN_API_KEY=K5SUWMCY8GVHXHIUK8K1WZVBVXB2N6K45Y
+
+# === CONTRACT ===
+AERA_TOKEN_ADDRESS=0x5032206396A6001eEaD2e0178C763350C794F69e
+
+# === LEDGER (für zukünftige Deployments) ===
+# Falls du wieder deployen willst: Ledger Hardware Wallet verwenden!
+# PRIVATE_KEY=<NIE WIEDER HARDCODED!>
