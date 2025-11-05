@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const { Web3 } = require('web3');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.minimal' });
 
 console.log('🚀 Starting AERA Token Telegram Bot (MINIMAL VERSION)...\n');
 
