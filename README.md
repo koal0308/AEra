@@ -217,6 +217,7 @@ All transactions, parameters, and updates are logged on-chain and documented in 
 | Platform | Link |
 |----------|------|
 | **Telegram Bot** | [@AEra_Go_Live_bot](https://t.me/AEra_Go_Live_bot) |
+| **X (Twitter)** | [@AEraResonant](https://x.com/AEraResonant) |
 | **GitHub** | [koal0308/AEra](https://github.com/koal0308/AEra) |
 | **Safe Governance** | [Gnosis Safe](https://app.safe.global/home?safe=sep:0xC8B1bEb43361bb78400071129139A37Eb5c5Dd93) |
 | **Etherscan** | [Contract](https://sepolia.etherscan.io/address/0x5032206396A6001eEaD2e0178C763350C794F69e) |
