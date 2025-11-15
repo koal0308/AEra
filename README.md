@@ -23,7 +23,7 @@ AEra is part of the wider **VERA / PAXIS ecosystem** — an initiative focused o
 
 ### 🔗 Quick Links
 - **Etherscan:** https://sepolia.etherscan.io/address/0x5032206396A6001eEaD2e0178C763350C794F69e
-- **Sourcify:** [[https://sourcify.dev/#/verify/0x5032206396A6001eEaD2e0178C763350C794F69e?network=11155111]
+- **Sourcify (Full Match):** https://repo.sourcify.dev/contracts/full_match/11155111/0x5032206396A6001eEaD2e0178C763350C794F69e/
 - **Write Contract:** https://sepolia.etherscan.io/address/0x5032206396A6001eEaD2e0178C763350C794F69e#writeContract
 
 ---
@@ -68,8 +68,8 @@ AEra is part of the wider **VERA / PAXIS ecosystem** — an initiative focused o
 
 ### 📊 Verification Status
 - ✅ **Etherscan:** Verified & Published
-- ✅ **Sourcify:** Exact Match (ID: 9753387)
-- ✅ **Slither Analysis:** https://github.com/koal0308/AEra/blob/master/SLITHER-REPORT.md
+- ✅ **Sourcify:** Exact match (direct artifact download)
+- ✅ **Slither Analysis:** https://github.com/koal0308/AEra/blob/master/docs/SLITHER-REPORT.md
 - ✅ **Multi-Sig Minting:** TESTED & VERIFIED ✅ (Nov 5, 2025)
   - Test 1: 1 AERA minted (Block 9560611)
   - Test 2: Debug iteration
@@ -143,13 +143,13 @@ aera-token/
 ├── /contracts/              → Solidity smart contract source
 ├── /scripts/                → Deployment & verification scripts
 ├── /docs/                   → Documentation (white paper, architecture)
+│   ├── WHITEPAPER.md         → Official white paper
+│   ├── SECURITY-GUARANTEE.md → Security model explanation
+│   ├── TRANSPARENCY-LOG.md   → Complete verification data
+│   ├── DEPLOYMENT-CHECKLIST.md → Phase 0 completion status
+│   └── SLITHER-REPORT.md     → Security analysis results
 ├── /test/                   → Unit & integration tests
 ├── /artifacts/              → Compiled contract ABIs
-├── WHITEPAPER.md            → Official white paper
-├── SECURITY-GUARANTEE.md    → Security model explanation
-├── TRANSPARENCY-LOG.md      → Complete verification data
-├── DEPLOYMENT-CHECKLIST.md  → Phase 0 completion status
-├── SLITHER-REPORT.md        → Security analysis results
 ├── README.md                → This file
 └── hardhat.config.js        → Hardhat configuration
 ```
@@ -172,13 +172,13 @@ All transactions, parameters, and updates are logged on-chain and documented in 
 
 | Document | Link | Purpose |
 |----------|------|---------|
-| **White Paper v1.0** | [WHITEPAPER.md](./WHITEPAPER.md) | Official project vision & roadmap |
-| **Security Guarantee** | [SECURITY-GUARANTEE.md](./SECURITY-GUARANTEE.md) | Why your tokens are safe |
-| **Transparency Log** | [TRANSPARENCY-LOG.md](./TRANSPARENCY-LOG.md) | All TX hashes & verification IDs |
-| **Deployment Checklist** | [DEPLOYMENT-CHECKLIST.md](./DEPLOYMENT-CHECKLIST.md) | Phase 0 completion evidence |
-| **Slither Report** | [SLITHER-REPORT.md](./SLITHER-REPORT.md) | Static security analysis |
+| **White Paper v1.0** | [docs/WHITEPAPER.md](./docs/WHITEPAPER.md) | Official project vision & roadmap |
+| **Security Guarantee** | [docs/SECURITY-GUARANTEE.md](./docs/SECURITY-GUARANTEE.md) | Why your tokens are safe |
+| **Transparency Log** | [docs/TRANSPARENCY-LOG.md](./docs/TRANSPARENCY-LOG.md) | All TX hashes & verification IDs |
+| **Deployment Checklist** | [docs/DEPLOYMENT-CHECKLIST.md](./docs/DEPLOYMENT-CHECKLIST.md) | Phase 0 completion evidence |
+| **Slither Report** | [docs/SLITHER-REPORT.md](./docs/SLITHER-REPORT.md) | Static security analysis |
 | **Airdrop Architecture** | [docs/AIRDROP-ARCHITECTURE.md](./docs/AIRDROP-ARCHITECTURE.md) | Airdrop system design |
-| **Documentation Index** | [DOCUMENTATION-INDEX.md](./DOCUMENTATION-INDEX.md) | Complete docs directory |
+| **Documentation Index** | [docs/DOCUMENTATION-INDEX.md](./docs/DOCUMENTATION-INDEX.md) | Complete docs directory |
 
 ---
 
@@ -190,7 +190,7 @@ All transactions, parameters, and updates are logged on-chain and documented in 
 | **GitHub** | [koal0308/AEra](https://github.com/koal0308/AEra) |
 | **Safe Governance** | [Gnosis Safe](https://app.safe.global/home?safe=sep:0xC8B1bEb43361bb78400071129139A37Eb5c5Dd93) |
 | **Etherscan** | [Contract](https://sepolia.etherscan.io/address/0x5032206396A6001eEaD2e0178C763350C794F69e) |
-| **Sourcify** | [Verification](https://sourcify.dev/#/verify/0x5032206396A6001eEaD2e0178C763350C794F69e?network=11155111) |
+| **Sourcify** | [Verification Artifact](https://repo.sourcify.dev/contracts/full_match/11155111/0x5032206396A6001eEaD2e0178C763350C794F69e/) |
 
 ---
 
@@ -219,7 +219,7 @@ https://sepolia.etherscan.io/address/0x5032206396A6001eEaD2e0178C763350C794F69e#
 ### Verify Deployment
 ```bash
 # Check transparency log for all TX hashes
-cat TRANSPARENCY-LOG.md
+cat docs/TRANSPARENCY-LOG.md
 
 # Run Slither analysis
 slither . --solc ~/.solc-select/artifacts/solc-0.8.20/solc-0.8.20 --json
@@ -245,9 +245,9 @@ AEra = Transparency × Resonance ÷ Speculation
 
 ## 🔗 More Information
 
-- **Get started:** Read the [WHITEPAPER.md](./WHITEPAPER.md)
-- **Understand security:** See [SECURITY-GUARANTEE.md](./SECURITY-GUARANTEE.md)
-- **Check verification:** Visit [TRANSPARENCY-LOG.md](./TRANSPARENCY-LOG.md)
+- **Get started:** Read the [docs/WHITEPAPER.md](./docs/WHITEPAPER.md)
+- **Understand security:** See [docs/SECURITY-GUARANTEE.md](./docs/SECURITY-GUARANTEE.md)
+- **Check verification:** Visit [docs/TRANSPARENCY-LOG.md](./docs/TRANSPARENCY-LOG.md)
 - **Join community:** Message [@AEra_Go_Live_bot](https://t.me/AEra_Go_Live_bot)
 
 ---
