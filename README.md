@@ -1,6 +1,36 @@
 # 🌀 AEra Token — The Resonant Standard
 
-> "In a world obsessed with price, we built something that measures alignment."
+> "In a world obsessed with price, we built someWe see AEra as a prototype for trustable, verifiable digital value, forming the foundation for the VERA project's economic layer.
+
+---
+
+## 🤖 Telegram Bot Features
+
+The **AEra Telegram Bot** (@AEra_Go_Live_bot) brings community governance directly to Telegram with Web3 integration:
+
+### ✅ Web3 Integration
+- **WalletConnect Support** — Connect MetaMask or any WalletConnect-compatible wallet
+- **Real-time On-Chain Data** — Live token supply, ownership status via Web3
+- **Sepolia Testnet** — Ethereum Sepolia (Chain ID: 11155111) connected
+
+### ✅ Community Voting
+- **Standard Polls** — 1-person-1-vote community abstimmungen (min. 0.5 AERA required)
+- **Weighted Polls** — Token-weighted voting (your voting power = your AERA balance)
+- **Poll Archive** — Complete history of past abstimmungen with results
+- **Real-time Results** — See live voting progress and final outcomes
+
+### ✅ Airdrop System
+- **First Registration Bonus** — 0.5 AERA welcome bonus on first wallet connection
+- **Single Wallet Per User** — One Telegram account = one wallet (no multi-accounting)
+- **One-Time Airdrop** — Each user receives bonus only once
+- **Anti-Fraud** — Database-backed wallet tracking prevents duplicate claims
+
+### ✅ Core Commands
+`/start` • `/connect` • `/polls` • `/wpolls` • `/vote` • `/info` • `/verify` • And 15+ governance commands
+
+---
+
+## 🚀 Roadmap that measures alignment."
 
 ## 🧭 Overview
 
